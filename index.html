@@ -39,7 +39,9 @@
     <button id="add-expense-btn">+ Add Expense</button>
 </div>
         </section>
-
+<!--  -->
+        <div id="income-form" class="income-form"> <div class="form-header"> <div> <h2>Add Income</h2> <p>Enter your income details</p> </div> <button id="close-income-form" type="button"> × </button> </div> <form> <label for="income-source">Income Source</label> <input type="text" id="income-source" placeholder="e.g. Salary, Freelance, Pocket Money" > <label for="income-amount">Amount</label> <input type="number" id="income-amount" placeholder="₹ 0" > <label for="income-category">Category</label> <select id="income-category"> <option value="">Select category</option> <option value="salary">Salary</option> <option value="freelance">Freelance</option> <option value="business">Business</option> <option value="investment">Investment</option> <option value="gift">Gift</option> <option value="other">Other</option> </select> <label for="income-date">Date</label> <input type="date" id="income-date" > <label for="income-note">Note</label> <textarea id="income-note" placeholder="Add a note (optional)" rows="3" ></textarea> <button type="submit" class="income-submit-btn"> + Add Income </button> </form> </div>
+        <!--  -->
 
         <!-- Summary Cards -->
         <section class="summary">
@@ -74,7 +76,7 @@
                 <h2>Add Expense</h2>
                 <p class="form-subtitle">Enter your expense details</p>
 
-                <form>
+                <form id="expense-form">
 
                     <label for="expense-name">Expense Name</label>
                     <input
@@ -229,7 +231,7 @@
     <footer>
         <p>© 2026 ExpenseTrack. Manage your money wisely.</p>
     </footer>
-
+    <script src="script.js"></script>
 </body>
 
 </html>
