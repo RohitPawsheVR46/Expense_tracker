@@ -195,51 +195,61 @@ expenseForm.addEventListener("submit", function (e) {
 
 
 // transactions cards..
-let cards = JSON.parse(localStorage.getItem("expense_dets"));
-    cards.forEach(function(value){
-        let iconn = null;
-    if(value.category === "Food"){
+let cards = JSON.parse(localStorage.getItem("expense_dets")) || [];
+
+for (let i = 0; i < cards.length; i++) {
+
+    let value = cards[i];
+
+    let iconn = null;
+
+    if (value.category === "Food") {
         iconn = "🍔";
     }
-    else if(value.category === "Shopping"){
+    else if (value.category === "Shopping") {
         iconn = "🛍️";
-    } else if(value.category === "Travel"){
+    }
+    else if (value.category === "Travel") {
         iconn = "✈️";
-    } else if(value.category === "Entertainment"){
+    }
+    else if (value.category === "Entertainment") {
         iconn = "🎬";
-    } else if(value.category === "Bills"){
+    }
+    else if (value.category === "Bills") {
         iconn = "💳";
-    } else {
+    }
+    else {
         iconn = "📦";
     }
 
-    function getDate(date){
-        const today = new Date();   // gives current day date. eg: Wed Sep 23 2026 20:30:00 , this is the format
-        const expenseDate = new Date(date);  //converts our date into proper date format like above.
 
-        //this makes the time 00:00:00 
-        //why do this? so that the substraction happens properly.
-        today.setHours(0,0,0,0);
-        expenseDate.setHours(0,0,0,0);
-        
+    function getDate(date) {
+
+        const today = new Date();
+        const expenseDate = new Date(date);
+
+        today.setHours(0, 0, 0, 0);
+        expenseDate.setHours(0, 0, 0, 0);
+
         const difference = today - expenseDate;
-        
-        if(difference === 0){
+
+        if (difference === 0) {
             return "Today";
         }
-        else if(difference === 24 * 60 * 60 * 1000){
+        else if (difference === 24 * 60 * 60 * 1000) {
             return "Yesterday";
         }
 
         return date;
     }
 
+
     const transaction = document.createElement("div");
     transaction.className = "transaction";
 
 
     const transactionIcon = document.createElement("div");
-    transactionIcon.className = "transaction-icon shopping";
+    transactionIcon.className = "transaction-icon " + value.category;
     transactionIcon.textContent = iconn;
 
 
@@ -265,8 +275,15 @@ let cards = JSON.parse(localStorage.getItem("expense_dets"));
     transaction.appendChild(transactionIcon);
     transaction.appendChild(transactionInfo);
     transaction.appendChild(amountt);
+
     document.querySelector(".transaction-list").append(transaction);
-});
+
+
+    // Stop after 4 transactions
+    if (i >= 3) {
+        break;
+    }
+}
 //
 let total_income = document.querySelector(".card.income h2");
 let income = JSON.parse(localStorage.getItem("income_dets")) || [];
