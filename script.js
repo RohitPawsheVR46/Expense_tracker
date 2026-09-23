@@ -219,6 +219,28 @@ let cards = JSON.parse(localStorage.getItem("expense_dets"));
     } else {
         iconn = "📦";
     }
+
+    function getDate(date){
+        const today = new Date();   // gives current day date. eg: Wed Sep 23 2026 20:30:00 , this is the format
+        const expenseDate = new Date(date);  //converts our date into proper date format like above.
+
+        //this makes the time 00:00:00 
+        //why do this? so that the substraction happens properly.
+        today.setHours(0,0,0,0);
+        expenseDate.setHours(0,0,0,0);
+        
+        const difference = today - expenseDate;
+        
+        if(difference === 0){
+            return "Today";
+        }
+        else if(difference === 24 * 60 * 60 * 1000){
+            return "Yesterday";
+        }
+
+        return date;
+    }
+
     const transaction = document.createElement("div");
     transaction.className = "transaction";
 
@@ -237,7 +259,7 @@ let cards = JSON.parse(localStorage.getItem("expense_dets"));
 
 
     const details = document.createElement("p");
-    details.textContent = value.category + " • " + value.date;
+    details.textContent = value.category + " • " + getDate(value.date);
 
 
     const amountt = document.createElement("strong");
@@ -252,4 +274,3 @@ let cards = JSON.parse(localStorage.getItem("expense_dets"));
     transaction.appendChild(amountt);
     document.querySelector(".transaction-list").append(transaction);
 });
-// 📦
