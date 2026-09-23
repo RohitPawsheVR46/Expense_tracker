@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Transactions - ExpenseTrack</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">Expense<span>Track</span></div>
+
+        <div class="nav-links">
+            <a href="index.html">Dashboard</a>
+            <a href="transactions.html">Transactions</a>
+            <a href="#">Reports</a>
+        </div>
+    </nav>
+
+
+    <main>
+
+        <section class="transactions-page-header">
+
+            <div>
+                <h1>Transactions</h1>
+                <p>View and manage all your transactions.</p>
+            </div>
+
+            <div class="action-buttons">
+                <button id="add-income-btn">+ Add Income</button>
+                <button id="add-expense-btn">+ Add Expense</button>
+            </div>
+
+        </section>
+
+
+        <!-- Search and Filter -->
+
+        <section class="transaction-tools">
+
+            <input
+                type="text"
+                placeholder="Search transactions..."
+                id="search-transactions"
+            >
+
+            <select id="filter-category">
+                <option value="all">All Categories</option>
+                <option value="food">Food</option>
+                <option value="shopping">Shopping</option>
+                <option value="travel">Travel</option>
+                <option value="bills">Bills</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="other">Other</option>
+            </select>
+
+            <select id="filter-type">
+                <option value="all">All Transactions</option>
+                <option value="income">Income</option>
+                <option value="expense">Expenses</option>
+            </select>
+
+        </section>
+
+
+        <!-- All Transactions -->
+
+        <section class="all-transactions">
+
+            <h2>September 2026</h2>
+
+
+            <div class="transaction">
+
+                <div class="transaction-icon food">
+                    🍔
+                </div>
+
+                <div class="transaction-info">
+                    <h3>Lunch</h3>
+                    <p>Food • Sep 23, 2026</p>
+                </div>
+
+                <strong class="expense-amount">
+                    - ₹250
+                </strong>
+
+            </div>
+
+
+            <div class="transaction">
+
+                <div class="transaction-icon shopping">
+                    🛍️
+                </div>
+
+                <div class="transaction-info">
+                    <h3>Shopping</h3>
+                    <p>Shopping • Sep 22, 2026</p>
+                </div>
+
+                <strong class="expense-amount">
+                    - ₹1,200
+                </strong>
+
+            </div>
+
+
+            <div class="transaction">
+
+                <div class="transaction-icon travel">
+                    🚕
+                </div>
+
+                <div class="transaction-info">
+                    <h3>Uber</h3>
+                    <p>Travel • Sep 21, 2026</p>
+                </div>
+
+                <strong class="expense-amount">
+                    - ₹340
+                </strong>
+
+            </div>
+
+
+            <div class="transaction">
+
+                <div class="transaction-icon bills">
+                    💡
+                </div>
+
+                <div class="transaction-info">
+                    <h3>Electricity Bill</h3>
+                    <p>Bills • Sep 20, 2026</p>
+                </div>
+
+                <strong class="expense-amount">
+                    - ₹1,850
+                </strong>
+
+            </div>
+
+
+            <!-- Income -->
+
+            <div class="transaction">
+
+                <div class="transaction-icon income-icon">
+                    💰
+                </div>
+
+                <div class="transaction-info">
+                    <h3>Salary</h3>
+                    <p>Income • Sep 1, 2026</p>
+                </div>
+
+                <strong class="income-amount">
+                    + ₹40,000
+                </strong>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
