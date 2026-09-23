@@ -92,3 +92,99 @@ filterCategory.addEventListener("change", function () {
     }
 
 });
+
+//
+const addIncomeBtn = document.getElementById("add-income-btn");
+const incomeForm = document.getElementById("income-form");
+const closeIncomeForm = document.getElementById("close-income-form");
+
+addIncomeBtn.addEventListener("click", function () {
+    incomeForm.style.display = "block";
+})
+closeIncomeForm.addEventListener("click", function () {
+    incomeForm.style.display = "none";
+})
+
+//form validation
+const source = document.getElementById("income-source");
+const amount = document.getElementById("income-amount");
+const categoryy = document.getElementById("income-category");
+const date = document.getElementById("income-date");
+const note = document.getElementById("income-note");
+
+let income_dets = JSON.parse(localStorage.getItem("income_dets")) || [];
+document.querySelector("#income-form-data").addEventListener("submit", function (e) {
+
+    e.preventDefault();
+
+    let valid = true;
+
+
+    // Source
+    if (source.value.trim() === "") {
+        alert("Please enter the income source.");
+        valid = false;
+    }
+
+
+    // Amount
+    else if (amount.value.trim() === "") {
+        alert("Please enter the amount.");
+        valid = false;
+    }
+
+    else if (Number(amount.value) <= 0) {
+        alert("Amount must be greater than 0.");
+        valid = false;
+    }
+
+
+    // Category
+    else if (categoryy.value === "") {
+        alert("Please select a category.");
+        valid = false;
+    }
+
+
+    // Date
+    else if (date.value === "") {
+        alert("Please select a date.");
+        valid = false;
+    }
+
+
+    // Future date
+    else {
+
+        const selectedDate = new Date(date.value);
+        const today = new Date();
+
+        today.setHours(0, 0, 0, 0);
+
+        if (selectedDate > today) {
+            alert("Date cannot be in the future.");
+            valid = false;
+        }
+    }
+
+
+    // If everything is valid
+    if (valid) {
+
+        console.log("Income is valid!");
+
+        income_dets.push({
+            source: source.value,
+            amount: Number(amount.value),
+            category: categoryy.value,
+            date: date.value,
+            note: note.value,
+        }
+        )
+
+        localStorage.setItem("income_dets", JSON.stringify(income_dets));
+
+        document.getElementById("income-form").style.display = "none";
+    }
+
+});

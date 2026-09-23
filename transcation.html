@@ -17,7 +17,7 @@
 
         <div class="nav-links">
             <a href="index.html">Dashboard</a>
-            <a href="transactions.html">Transactions</a>
+            <a href="transaction.html">Transactions</a>
             <a href="#">Reports</a>
         </div>
     </nav>
@@ -38,17 +38,36 @@
             </div>
 
         </section>
-
+        <!--  -->
+        <div id="income-form" class="income-form">
+            <div class="form-header">
+                <div>
+                    <h2>Add Income</h2>
+                    <p>Enter your income details</p>
+                </div> <button id="close-income-form" type="button"> × </button>
+            </div>
+            <form id="income-form-data"> <label for="income-source">Income Source</label> <input type="text" id="income-source"
+                    placeholder="e.g. Salary, Freelance, Pocket Money"> <label for="income-amount">Amount</label> <input
+                    type="number" id="income-amount" placeholder="₹ 0"> <label for="income-category">Category</label>
+                <select id="income-category">
+                    <option value="">Select category</option>
+                    <option value="salary">Salary</option>
+                    <option value="freelance">Freelance</option>
+                    <option value="business">Business</option>
+                    <option value="investment">Investment</option>
+                    <option value="gift">Gift</option>
+                    <option value="other">Other</option>
+                </select> <label for="income-date">Date</label> <input type="date" id="income-date"> <label
+                    for="income-note">Note</label> <textarea id="income-note" placeholder="Add a note (optional)"
+                    rows="3"></textarea> <button type="submit" class="income-submit-btn"> + Add Income </button> </form>
+        </div>
+        <!--  -->
 
         <!-- Search and Filter -->
 
         <section class="transaction-tools">
 
-            <input
-                type="text"
-                placeholder="Search transactions..."
-                id="search-transactions"
-            >
+            <input type="text" placeholder="Search transactions..." id="search-transactions">
 
             <select id="filter-category">
                 <option value="all">All Categories</option>
