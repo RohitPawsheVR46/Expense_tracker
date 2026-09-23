@@ -96,13 +96,6 @@ incomeForm.addEventListener("submit", function (e) {
 
 });
 
-//
-let total_income = document.querySelector(".card.income h2");
-let income = JSON.parse(localStorage.getItem("income_dets")) || [];
-let lastIncome = income[income.length - 1];
-
-total_income.textContent = "₹" + lastIncome.amount;
-console.log(total_income);
 
 //validate add expense form
 
@@ -205,16 +198,16 @@ expenseForm.addEventListener("submit", function (e) {
 let cards = JSON.parse(localStorage.getItem("expense_dets"));
     cards.forEach(function(value){
         let iconn = null;
-    if(value.category === "food"){
+    if(value.category === "Food"){
         iconn = "🍔";
     }
-    else if(value.category === "shopping"){
+    else if(value.category === "Shopping"){
         iconn = "🛍️";
-    } else if(value.category === "travel"){
+    } else if(value.category === "Travel"){
         iconn = "✈️";
-    } else if(value.category === "entertainment"){
+    } else if(value.category === "Entertainment"){
         iconn = "🎬";
-    } else if(value.category === "bills"){
+    } else if(value.category === "Bills"){
         iconn = "💳";
     } else {
         iconn = "📦";
@@ -274,3 +267,21 @@ let cards = JSON.parse(localStorage.getItem("expense_dets"));
     transaction.appendChild(amountt);
     document.querySelector(".transaction-list").append(transaction);
 });
+//
+let total_income = document.querySelector(".card.income h2");
+let income = JSON.parse(localStorage.getItem("income_dets")) || [];
+let lastIncome = income[income.length - 1];
+total_income.textContent = "₹" + lastIncome.amount;
+// console.log(total_income);
+
+//
+let total_expense = document.querySelector(".card.expense h2");
+let total = 0;
+cards.forEach(function(val){
+    total = total + val.amount;
+});
+total_expense.textContent = "₹" +  total;
+
+//
+let total_balance = document.querySelector(".card.balance h2");
+total_balance.textContent = "₹" + (lastIncome.amount - total);
