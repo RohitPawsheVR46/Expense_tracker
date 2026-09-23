@@ -2,10 +2,10 @@ const addIncomeBtn = document.getElementById("add-income-btn");
 const incomeForm = document.getElementById("income-form");
 const closeIncomeForm = document.getElementById("close-income-form");
 
-addIncomeBtn.addEventListener("click",function () {
+addIncomeBtn.addEventListener("click", function () {
     incomeForm.style.display = "block";
 })
-closeIncomeForm.addEventListener("click",function(){
+closeIncomeForm.addEventListener("click", function () {
     incomeForm.style.display = "none";
 })
 
@@ -87,7 +87,7 @@ incomeForm.addEventListener("submit", function (e) {
         }
         )
 
-        localStorage.setItem("income_dets" , JSON.stringify(income_dets));
+        localStorage.setItem("income_dets", JSON.stringify(income_dets));
 
         // incomeForm.reset();
 
@@ -193,7 +193,7 @@ expenseForm.addEventListener("submit", function (e) {
             category: expenseCategory.value,
             date: expenseDate.value
         });
-        localStorage.setItem("expense_dets" , JSON.stringify(expense_dets));
+        localStorage.setItem("expense_dets", JSON.stringify(expense_dets));
 
         expenseForm.reset();
     }
@@ -201,4 +201,55 @@ expenseForm.addEventListener("submit", function (e) {
 });
 
 
+// transactions cards..
+let cards = JSON.parse(localStorage.getItem("expense_dets"));
+    cards.forEach(function(value){
+        let iconn = null;
+    if(value.category === "food"){
+        iconn = "🍔";
+    }
+    else if(value.category === "shopping"){
+        iconn = "🛍️";
+    } else if(value.category === "travel"){
+        iconn = "✈️";
+    } else if(value.category === "entertainment"){
+        iconn = "🎬";
+    } else if(value.category === "bills"){
+        iconn = "💳";
+    } else {
+        iconn = "📦";
+    }
+    const transaction = document.createElement("div");
+    transaction.className = "transaction";
 
+
+    const transactionIcon = document.createElement("div");
+    transactionIcon.className = "transaction-icon shopping";
+    transactionIcon.textContent = iconn;
+
+
+    const transactionInfo = document.createElement("div");
+    transactionInfo.className = "transaction-info";
+
+
+    const title = document.createElement("h3");
+    title.textContent = value.name;
+
+
+    const details = document.createElement("p");
+    details.textContent = value.category + " • " + value.date;
+
+
+    const amountt = document.createElement("strong");
+    amountt.textContent = "- ₹" + value.amount;
+
+
+    transactionInfo.appendChild(title);
+    transactionInfo.appendChild(details);
+
+    transaction.appendChild(transactionIcon);
+    transaction.appendChild(transactionInfo);
+    transaction.appendChild(amountt);
+    document.querySelector(".transaction-list").append(transaction);
+});
+// 📦
