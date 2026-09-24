@@ -1,28 +1,35 @@
 let cards = JSON.parse(localStorage.getItem("expense_dets"));
 function showExpense(card) {
-    card.forEach(function (value) {
+
+    for (let i = 0; i < card.length; i++) {
+
+        let value = card[i];
+
         let iconn = null;
+
         if (value.category === "Food") {
             iconn = "🍔";
         }
         else if (value.category === "Shopping") {
             iconn = "🛍️";
-        } else if (value.category === "Travel") {
+        }
+        else if (value.category === "Travel") {
             iconn = "✈️";
-        } else if (value.category === "Entertainment") {
+        }
+        else if (value.category === "Entertainment") {
             iconn = "🎬";
-        } else if (value.category === "Bills") {
+        }
+        else if (value.category === "Bills") {
             iconn = "💳";
-        } else {
+        }
+        else {
             iconn = "📦";
         }
 
         function getDate(date) {
-            const today = new Date();   // gives current day date. eg: Wed Sep 23 2026 20:30:00 , this is the format
-            const expenseDate = new Date(date);  //converts our date into proper date format like above.
+            const today = new Date();
+            const expenseDate = new Date(date);
 
-            //this makes the time 00:00:00 
-            //why do this? so that the substraction happens properly.
             today.setHours(0, 0, 0, 0);
             expenseDate.setHours(0, 0, 0, 0);
 
@@ -58,16 +65,22 @@ function showExpense(card) {
         amountt.className = "expense-amount";
         amountt.textContent = "- ₹" + value.amount;
 
+        // DELETE BUTTON
+        const deleteBtn = document.createElement("button");
+        deleteBtn.className = "delete-btn";
+        deleteBtn.dataset.id = value.id;
+        deleteBtn.textContent = "Delete";
+
         transactionInfo.appendChild(title);
         transactionInfo.appendChild(details);
 
         transaction.appendChild(transactionIcon);
         transaction.appendChild(transactionInfo);
         transaction.appendChild(amountt);
+        transaction.appendChild(deleteBtn);
 
         document.querySelector(".all-transactions").appendChild(transaction);
-    });
-
+    }
 }
 const filterCategory = document.getElementById("filter-category");
 
@@ -80,14 +93,14 @@ filterCategory.addEventListener("change", function () {
     let category = filterCategory.value;
 
     if (category === "all") {
-        document.querySelector(".all-transactions").innerHTML="";
+        document.querySelector(".all-transactions").innerHTML = "";
         showExpense(cards);
     }
     else {
-        let filtered = cards.filter(function(card) {
+        let filtered = cards.filter(function (card) {
             return card.category.toLowerCase() === category;
         });
-        document.querySelector(".all-transactions").innerHTML="";
+        document.querySelector(".all-transactions").innerHTML = "";
         showExpense(filtered);
     }
 
@@ -192,10 +205,33 @@ document.querySelector("#income-form-data").addEventListener("submit", function 
 //search
 // let category_data = ["all" ,"food","shopping","travel","bills","entertainment","other"];
 let search = document.querySelector("#search-transactions");
-search.addEventListener("input" , function(){
-    let filterr = cards.filter(function(card){
+search.addEventListener("input", function () {
+    let filterr = cards.filter(function (card) {
         return card.category.toLowerCase().startsWith(search.value.toLowerCase());
     });
-    document.querySelector(".all-transactions").innerHTML="";
+    document.querySelector(".all-transactions").innerHTML = "";
     showExpense(filterr);
+})
+
+
+//delete transaction feature...
+document.querySelector(".all-transactions").addEventListener("click", function (e) {
+    if (e.target.classList.contains("delete-btn")) {
+
+        // cardId = e.target.dataset.id;  gives string so that we convert it to number below..
+        cardId = Number(e.target.dataset.id);
+        // console.log("Clicked ID:", cardId);
+
+        let card_to_delete_has_index = cards.findIndex(element => {
+            return element.id === cardId;
+        });
+
+        // console.log("Found index:", card_to_delete_has_index);
+        cards.splice(card_to_delete_has_index, 1);
+        localStorage.setItem("expense_dets" , JSON.stringify(cards));
+        // console.log("Cards:", cards);
+        document.querySelector(".all-transactions").innerHTML = "";
+        showExpense(cards);
+
+    }
 })

@@ -184,7 +184,8 @@ expenseForm.addEventListener("submit", function (e) {
             name: expenseName.value,
             amount: Number(expenseAmount.value),
             category: expenseCategory.value,
-            date: expenseDate.value
+            date: expenseDate.value,
+            id:Date.now()
         });
         localStorage.setItem("expense_dets", JSON.stringify(expense_dets));
 

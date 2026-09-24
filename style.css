@@ -687,3 +687,22 @@ footer {
 .income-submit-btn:hover {
     background: #126b4a;
 }
+/* transaction card delete btn */
+.delete-btn {
+    border: none;
+    background: transparent;
+
+    color: #d65c5c;
+
+    font-size: 14px;
+    cursor: pointer;
+
+    margin-left: 20px;
+    padding: 6px 10px;
+
+    border-radius: 6px;
+}
+
+.delete-btn:hover {
+    background: #fff1f1;
+}
