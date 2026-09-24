@@ -92,6 +92,8 @@ incomeForm.addEventListener("submit", function (e) {
         // incomeForm.reset();
 
         document.getElementById("income-form").style.display = "none";
+        location.reload(); // reloads the current webpage..
+
     }
 
 });
@@ -190,6 +192,8 @@ expenseForm.addEventListener("submit", function (e) {
         localStorage.setItem("expense_dets", JSON.stringify(expense_dets));
 
         expenseForm.reset();
+        location.reload(); // reloads the current webpage..
+
     }
 
 });
