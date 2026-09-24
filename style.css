@@ -706,3 +706,20 @@ footer {
 .delete-btn:hover {
     background: #fff1f1;
 }
+
+/* resset btn css */
+#reset-btn {
+    background: transparent;
+    color: #d65c5c;
+    border: 1px solid #d65c5c;
+    padding: 10px 18px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+#reset-btn:hover {
+    background: #d65c5c;
+    color: white;
+}

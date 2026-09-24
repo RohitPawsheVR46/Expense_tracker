@@ -313,3 +313,18 @@ document.getElementById("add-expense-btn").onclick = function() {
         }
     );
 };
+
+//reset btn
+document.getElementById("reset-btn").addEventListener("click", function () {
+
+    let confirmReset = confirm("Are you sure you want to reset all your data?");
+
+    if (confirmReset) {
+
+        localStorage.removeItem("income_dets");
+        localStorage.removeItem("expense_dets");
+
+        location.reload(); // reloads the current webpage..
+    }
+
+});
