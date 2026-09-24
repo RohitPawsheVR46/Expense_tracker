@@ -302,3 +302,13 @@ total_expense.textContent = "₹" +  total;
 //
 let total_balance = document.querySelector(".card.balance h2");
 total_balance.textContent = "₹" + (lastIncome.amount - total);
+
+
+//clicking the + expense btn will scroll down to expense form
+document.getElementById("add-expense-btn").onclick = function() {
+    document.querySelector(".expense-form").scrollIntoView(
+        {
+            behavior : "smooth"
+        }
+    );
+};

@@ -98,12 +98,12 @@ const addIncomeBtn = document.getElementById("add-income-btn");
 const incomeForm = document.getElementById("income-form");
 const closeIncomeForm = document.getElementById("close-income-form");
 
-addIncomeBtn.addEventListener("click", function () {
-    incomeForm.style.display = "block";
-})
-closeIncomeForm.addEventListener("click", function () {
-    incomeForm.style.display = "none";
-})
+// addIncomeBtn.addEventListener("click", function () {
+//     incomeForm.style.display = "block";
+// })
+// closeIncomeForm.addEventListener("click", function () {
+//     incomeForm.style.display = "none";
+// })
 
 //form validation
 const source = document.getElementById("income-source");
@@ -188,3 +188,14 @@ document.querySelector("#income-form-data").addEventListener("submit", function 
     }
 
 });
+
+//search
+// let category_data = ["all" ,"food","shopping","travel","bills","entertainment","other"];
+let search = document.querySelector("#search-transactions");
+search.addEventListener("input" , function(){
+    let filterr = cards.filter(function(card){
+        return card.category.toLowerCase().startsWith(search.value.toLowerCase());
+    });
+    document.querySelector(".all-transactions").innerHTML="";
+    showExpense(filterr);
+})
